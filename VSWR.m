@@ -16,7 +16,7 @@ w = 2 * pi / T;
 dt = 0.01;
 
 %line length
-l = 0.01 * lambda;
+l = 1 * lambda;
 
 %position
 z = 0:0.01:l;
