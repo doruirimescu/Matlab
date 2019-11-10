@@ -7,13 +7,13 @@ T = 1;
 lambda = 1;
 
 %wave number
-B = 2 * pi / lambda;
+B = 6 * pi / lambda;
 
 %angular speed
 w = 2 * pi / T;
 
 %time resolution
-dt = 0.01;
+dt = 0.2;
 
 %line length
 l = 1 * lambda;
@@ -22,7 +22,7 @@ l = 1 * lambda;
 z = 0:0.01:l;
 
 %reflection coefficient
-gamma = 1.0
+gamma = 0.1;
 
 %phase(turns into a sine wave)
 phi = 0;
