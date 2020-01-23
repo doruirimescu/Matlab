@@ -35,6 +35,8 @@ plot([1:T],vg_plot,'-o')
 xlim([0 T])
 ylim([min(vg_plot)*0.9 max(vg_plot)*1.1])
 title("V_g_e_n_e_r_a_t_o_r")
+xlabel("Time")
+ylabel("Voltage")
 grid on
 
 figure()
@@ -42,4 +44,6 @@ plot([1:T],vl_plot,'-o')
 xlim([0 T])
 ylim([min(vl_plot)*0.9 max(vl_plot)*1.1])
 title("V_l_o_a_d")
+xlabel("Time")
+ylabel("Voltage")
 grid on
