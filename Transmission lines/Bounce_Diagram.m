@@ -1,7 +1,7 @@
 %Bounce diagram
 close all
 clear all
-format long g
+format long
 
 zo = 75;    %characteristic impedance
 rs = 50;    %source impedance
@@ -17,6 +17,7 @@ vgr = vg;               %reflected from generator
 vlr = 0;                %reflected from load
 
 T = 10; %change according to timesteps needed
+
 for t = 1:T
     if mod( t, 2 ) == 0
         %We are at generator side
@@ -27,8 +28,10 @@ for t = 1:T
         vlr = vgr * gl;
         vl = vl + vlr + vgr;
     end
-    vg_plot(t) =vg;
-    vl_plot(t) =vl;
+    vg_plot(t)  = vg;
+    vl_plot(t)  = vl;
+    vgr_plot(t) = vgr;
+    vlr_plot(t) = vlr
 end
 
 plot([1:T],vg_plot,'-o')
@@ -47,3 +50,24 @@ title("V_l_o_a_d")
 xlabel("Time")
 ylabel("Voltage")
 grid on
+
+figure()
+hold on
+x = [0 1;1 0];
+for i = T:-1:1
+    line( x( mod(i,2)+1,:), [i+1, i] )
+    ind = T - i + 1
+    if mod( i, 2 ) == 0 
+        text(-0.27, i , num2str(vg_plot(ind) ) )
+        text(0.5, i + 0.65, num2str(vgr_plot(ind) ) )
+    else
+        text(1.15, i , num2str(vl_plot(ind) ) )
+        text(0.1, i + 0.65, num2str(vlr_plot(ind) ) )
+    end
+end
+text(1.15, T + 1 , num2str( 0 ) )
+
+xlim([-0.15 1.15])
+grid on
+set(gca,'yticklabel',{[]})
+title("Bounce diagram")
