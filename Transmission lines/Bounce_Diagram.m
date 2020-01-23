@@ -11,8 +11,8 @@ rl = 216;   %load impedance
 gi = (rs - zo)/(rs + zo);%generator gamma
 gl = (rl - zo)/(rl + zo);%load gamma
 
-vg = vs*zo/(zo+rs);     %total voltage at generator
-vl = 0;                 %total voltage at load
+vg  = vs*zo/(zo+rs);    %total voltage at generator
+vl  = 0;                %total voltage at load
 vgr = vg;               %reflected from generator
 vlr = 0;                %reflected from load
 
@@ -22,11 +22,11 @@ for t = 1:T
     if mod( t, 2 ) == 0
         %We are at generator side
         vgr = vlr * gi;
-        vg = vg + vgr + vlr
+        vg  = vg + vgr + vlr
     else
         %We are at load side
         vlr = vgr * gl;
-        vl = vl + vlr + vgr;
+        vl  = vl + vlr + vgr;
     end
     vg_plot(t)  = vg;
     vl_plot(t)  = vl;
@@ -58,11 +58,11 @@ for i = T:-1:1
     line( x( mod(i,2)+1,:), [i+1, i] )
     ind = T - i + 1
     if mod( i, 2 ) == 0 
-        text(-0.27, i , num2str(vg_plot(ind) ) )
-        text(0.5, i + 0.65, num2str(vgr_plot(ind) ) )
+        text( -0.27, i , num2str( vg_plot( ind) ) )
+        text( 0.5, i + 0.65, num2str( vgr_plot( ind ) ) )
     else
-        text(1.15, i , num2str(vl_plot(ind) ) )
-        text(0.1, i + 0.65, num2str(vlr_plot(ind) ) )
+        text( 1.15, i , num2str( vl_plot( ind ) ) )
+        text( 0.1, i + 0.65, num2str( vlr_plot( ind ) ) )
     end
 end
 text(1.15, T + 1 , num2str( 0 ) )
